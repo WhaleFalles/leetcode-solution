@@ -26,6 +26,7 @@ s = "abpcplea", d = ["a","b","c"]
 链接：https://leetcode-cn.com/problems/longest-word-in-dictionary-through-deleting
 
 题解：
+'''
 class Solution {
     public String findLongestWord(String s, List<String> d) {
         String longestWord="";
@@ -45,3 +46,4 @@ class Solution {
         return longestWord;
     }
 }
+'''
