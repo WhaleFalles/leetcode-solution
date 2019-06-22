@@ -41,17 +41,19 @@ class Solution {
             length++;
         }
         length++;
-        k=k%length;
+        k=k%length; //减少k 减少遍历次数
+        int feet=length-k; //旧的head的向后走的次数
+        
         if(k==0)return head;
-        tail.next=head;
-        int feet=length-k;
+        tail.next=head;  //尾连接头形成环链表
+        
         ListNode temp=null;
         for(int i=1;i<=feet;i++){
-            if(i==feet)temp=head;
+            if(i==feet)temp=head;  //记录新链表的尾结点
             head=head.next;
         
         }
-        temp.next=null;
+        temp.next=null; //断开环链表 形成新的单链表
         return head;
     }
 
