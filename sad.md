@@ -1,20 +1,58 @@
-<p>给定一个非空的整数数组，返回其中出现频率前&nbsp;<strong><em>k&nbsp;</em></strong>高的元素。</p>
+61 旋转链表 <p>给定一个链表，旋转链表，将链表每个节点向右移动&nbsp;<em>k&nbsp;</em>个位置，其中&nbsp;<em>k&nbsp;</em>是非负数。</p>
 
-<p><strong>示例 1:</strong></p>
+<p><strong>示例&nbsp;1:</strong></p>
 
-<pre><strong>输入: </strong>nums = [1,1,1,2,2,3], k = 2
-<strong>输出: </strong>[1,2]
+<pre><strong>输入:</strong> 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL, k = 2
+<strong>输出:</strong> 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL
+<strong>解释:</strong>
+向右旋转 1 步: 5-&gt;1-&gt;2-&gt;3-&gt;4-&gt;NULL
+向右旋转 2 步: 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL
 </pre>
 
-<p><strong>示例 2:</strong></p>
+<p><strong>示例&nbsp;2:</strong></p>
 
-<pre><strong>输入: </strong>nums = [1], k = 1
-<strong>输出: </strong>[1]</pre>
+<pre><strong>输入:</strong> 0-&gt;1-&gt;2-&gt;NULL, k = 4
+<strong>输出:</strong> <code>2-&gt;0-&gt;1-&gt;NULL</code>
+<strong>解释:</strong>
+向右旋转 1 步: 2-&gt;0-&gt;1-&gt;NULL
+向右旋转 2 步: 1-&gt;2-&gt;0-&gt;NULL
+向右旋转 3 步:&nbsp;<code>0-&gt;1-&gt;2-&gt;NULL</code>
+向右旋转 4 步:&nbsp;<code>2-&gt;0-&gt;1-&gt;NULL</code></pre>
 
-<p><strong>说明：</strong></p>
+~~~
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        if (head==null || head.next==null)return head;
+        int length=0;
+        ListNode tail=head;
+        while(tail.next!=null){
+            tail=tail.next;
+            length++;
+        }
+        length++;
+        k=k%length;
+        if(k==0)return head;
+        tail.next=head;
+        int feet=length-k;
+        ListNode temp=null;
+        for(int i=1;i<=feet;i++){
+            if(i==feet){
+                temp=head;
+            }
+            head=head.next;
+            
+        }
+        temp.next=null;
+        return head;
+    }
 
-<ul>
-	<li>你可以假设给定的&nbsp;<em>k&nbsp;</em>总是合理的，且 1 &le; k &le; 数组中不相同的元素的个数。</li>
-	<li>你的算法的时间复杂度<strong>必须</strong>优于 O(<em>n</em> log <em>n</em>) ,&nbsp;<em>n&nbsp;</em>是数组的大小。</li>
-</ul>
-
+}
+~~~
